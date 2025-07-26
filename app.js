@@ -51,7 +51,7 @@ class BlindVisionApp {
     async startCamera() {
         try {
             console.log('Starting camera...');
-            this.speak('Starting camera. Please allow camera permissions when prompted.');
+            // this.speak("Starting camera. Please allow camera permissions when prompted."); // Removed camera message
             
             // Configure camera constraints for mobile devices
             const constraints = {
@@ -68,7 +68,7 @@ class BlindVisionApp {
             
             console.log('Camera started successfully');
             this.updateStatus('Camera active', 'ready');
-            this.speak('Camera active. Starting live mode.');
+            // this.speak("Camera active. Starting live mode."); // Removed camera active message
             
             // Auto-start live mode for blind users
             setTimeout(() => {
@@ -128,7 +128,7 @@ class BlindVisionApp {
         
         if (this.liveMode) {
             console.log('Live mode activated');
-            this.speak('Live mode activated. I will describe your surroundings.');
+            // this.speak("Live mode activated. I will describe your surroundings."); // Removed live mode message
             this.updateStatus('Live mode active', 'analyzing');
             
             // Start analyzing immediately
@@ -140,7 +140,7 @@ class BlindVisionApp {
             }, 3000);
         } else {
             console.log('Live mode deactivated');
-            this.speak('Live mode deactivated. Tap to resume.');
+            // this.speak("Live mode deactivated. Tap to resume."); // Removed deactivation message
             this.updateStatus('Live mode inactive', 'ready');
             
             // Stop the interval
@@ -153,7 +153,7 @@ class BlindVisionApp {
 
     autoStart() {
         console.log('Auto-starting app for blind users...');
-        this.speak('BlindVision Assistant starting. Please allow camera permissions.');
+        // this.speak("BlindVision Assistant starting. Please allow camera permissions."); // Removed startup message
         this.startCamera();
     }
 
@@ -470,7 +470,7 @@ Describe in English with clear, direct language suitable for someone who cannot 
         } catch (error) {
             console.error('Analysis error:', error);
             this.updateStatus('Analysis failed', 'error');
-            this.speak('Analysis failed. Please try again.');
+            // this.speak("Analysis failed. Please try again."); // Removed error message
         }
     }
 
