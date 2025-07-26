@@ -179,12 +179,12 @@ class BlindVisionApp {
                 await this.speakWithElevenLabs(text);
                 console.log('ElevenLabs speech completed successfully');
             } catch (error) {
-                console.log('ElevenLabs failed, using browser fallback');
-                this.speakWithBrowser(text);
+                console.log("ElevenLabs failed, skipping speech");
+                // this.speakWithBrowser(text); // Disabled browser fallback
             }
         } else {
-            console.log('No ElevenLabs API key found. Using browser speech synthesis.');
-            this.speakWithBrowser(text);
+            console.log("ElevenLabs API key not found, skipping speech");
+            // this.speakWithBrowser(text); // Disabled browser fallback
         }
     }
 
