@@ -186,7 +186,7 @@ class BlindVisionApp {
             this.updateStatus('Live mode active', 'analyzing');
             
             // Start analyzing immediately
-            this.analyzeFrame();
+            // Removed immediate analysis to prevent duplicates
             
             // Then analyze every 3 seconds
             this.liveInterval = setInterval(() => {
@@ -557,7 +557,6 @@ Describe in English with clear, direct language suitable for someone who cannot 
         this.analyzeFrame();
     }
 
-    }
 
     stopLiveMode() {
         if (!this.liveMode) return;
