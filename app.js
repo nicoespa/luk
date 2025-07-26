@@ -213,6 +213,9 @@ class BlindVisionApp {
     }
 
     autoStart() {
+        console.log("=== AUTOSTART DEBUG ===");
+        console.log("Testing browser speech directly...");
+        this.speakWithBrowser("Test directo del browser. ¿Puedes escuchar esto?");
         console.log('Auto-starting app for blind users...');
         this.speak("Audio test. Can you hear me?"); // Simple audio test
         this.startCamera();
@@ -372,6 +375,10 @@ class BlindVisionApp {
     }
 
     speakWithBrowser(text) {
+        console.log("=== BROWSER SPEECH DEBUG ===");
+        console.log("Text to speak:", text);
+        console.log("Window object:", typeof window);
+        console.log("SpeechSynthesis available:", 'speechSynthesis' in window);
         console.log("Browser speech function called with text:", text.substring(0, 50) + "...");
         if ('speechSynthesis' in window) {
             console.log("Speech synthesis is available");
