@@ -14,6 +14,10 @@ class BlindVisionApp {
         this.currentAudio = null;
         this.isPlaying = false; console.log("Audio state: isPlaying = false");
         
+        // Device detection
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        console.log("Device type:", this.isMobile ? "Mobile" : "Desktop");
+        
         // API Keys - Load from environment variables or localStorage
         this.apiKey = window.ENV?.OPENAI_API_KEY || localStorage.getItem('openaiKey') || 'your_openai_api_key_here';
         
