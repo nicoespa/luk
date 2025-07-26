@@ -142,6 +142,7 @@ class BlindVisionApp {
             } else if (error.name === 'NotFoundError') {
                 this.speak('No camera found. Please check your device has a camera.');
             } else {
+            console.log("Speech synthesis NOT available");
                 this.speak('Camera error. Please refresh the page and try again.');
             }
         }
@@ -157,6 +158,7 @@ class BlindVisionApp {
             if (type === 'ready' || type === 'analyzing') {
                 statusElement.classList.add('active');
             } else {
+            console.log("Speech synthesis NOT available");
                 statusElement.classList.add('inactive');
             }
         }
@@ -197,6 +199,7 @@ class BlindVisionApp {
                 this.analyzeLiveFrame();
             }, 3000);
         } else {
+            console.log("Speech synthesis NOT available");
             console.log('Live mode deactivated');
             // this.speak("Live mode deactivated. Tap to resume."); // Removed deactivation message
             this.updateStatus('Live mode inactive', 'ready');
@@ -246,6 +249,7 @@ class BlindVisionApp {
                 // this.speakWithBrowser(text); // Disabled browser fallback
             }
         } else {
+            console.log("Speech synthesis NOT available");
             console.log("ElevenLabs API key not found, skipping speech");
             // this.speakWithBrowser(text); // Disabled browser fallback
         }
@@ -272,6 +276,7 @@ class BlindVisionApp {
         
         // Cancel speech synthesis
         if ('speechSynthesis' in window) {
+            console.log("Speech synthesis is available");
             speechSynthesis.cancel();
             speechSynthesis.pause();
         }
@@ -367,7 +372,9 @@ class BlindVisionApp {
     }
 
     speakWithBrowser(text) {
+        console.log("Browser speech function called with text:", text.substring(0, 50) + "...");
         if ('speechSynthesis' in window) {
+            console.log("Speech synthesis is available");
             console.log('Using browser speech synthesis');
             
             // Cancel any ongoing speech
@@ -525,6 +532,7 @@ Describe in English with clear, direct language suitable for someone who cannot 
                 this.speak(description);
                 this.lastDescription = description;
             } else {
+            console.log("Speech synthesis NOT available");
                 console.log('Description too similar, not speaking');
             }
             
