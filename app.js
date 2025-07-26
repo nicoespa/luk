@@ -9,6 +9,7 @@ class BlindVisionApp {
         this.lastDescription = '';
         this.speechQueue = [];
         this.isSpeaking = false;
+        this.isAnalyzing = false;
         
         // Audio management
         this.currentAudio = null;
@@ -556,17 +557,6 @@ Describe in English with clear, direct language suitable for someone who cannot 
         this.analyzeFrame();
     }
 
-    startLiveMode() {
-        if (this.liveMode) return;
-        
-        this.liveMode = true;
-        console.log('Live mode started');
-        // this.speak("Live mode started. I will describe your surroundings continuously."); // Removed live mode start message
-        
-        // Analyze every 2 seconds
-        this.liveInterval = setInterval(() => {
-            this.analyzeLiveFrame();
-        }, 2000);
     }
 
     stopLiveMode() {
