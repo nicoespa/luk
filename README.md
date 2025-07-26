@@ -3,3 +3,4 @@
 # Camera improvements
 # Force cache refresh v2
 # Vercel ready
+# Vercel config fixed
