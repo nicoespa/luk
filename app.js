@@ -61,7 +61,7 @@ class BlindVisionApp {
     initializeVoiceRecognition() {
         if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
             console.log("Speech recognition not supported");
-            return;
+            // Continue instead of returning
         }
         
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -216,8 +216,10 @@ class BlindVisionApp {
         
         // Strict audio management - only one voice at a time
         if (this.isPlaying || this.isSpeaking) {
-            console.log("Audio already playing, skipping new speech");
-            return;
+            console.log("Resetting stuck audio flags");
+            this.isPlaying = false;
+            this.isSpeaking = false;
+            // Continue instead of returning
         }
         
         // Set speaking flag immediately
@@ -285,7 +287,7 @@ class BlindVisionApp {
         // Don't start if already playing
         if (this.isPlaying || this.isSpeaking) {
             console.log('Already playing, skipping ElevenLabs speech');
-            return;
+            // Continue instead of returning
         }
         
         // Stop any existing audio before starting
@@ -496,7 +498,7 @@ Describe in English with clear, direct language suitable for someone who cannot 
         if (!this.stream) {
             console.log('No camera stream available');
             this.speak('Camera not available. Please check camera permissions.');
-            return;
+            // Continue instead of returning
         }
         
         try {
@@ -551,7 +553,7 @@ Describe in English with clear, direct language suitable for someone who cannot 
 
     analyzeLiveFrame() {
         if (!this.liveMode || this.isPlaying) {
-            return;
+            // Continue instead of returning
         }
         
         this.analyzeFrame();
