@@ -12,7 +12,7 @@ class BlindVisionApp {
         
         // Audio management
         this.currentAudio = null;
-        this.isPlaying = false;
+        this.isPlaying = false; console.log("Audio state: isPlaying = false");
         
         // API Keys - Load from environment variables or localStorage
         this.apiKey = window.ENV?.OPENAI_API_KEY || localStorage.getItem('openaiKey') || 'your_openai_api_key_here';
@@ -167,7 +167,7 @@ class BlindVisionApp {
         }
         
         // Stop any ongoing audio before starting new speech
-        this.stopAllAudio();
+        this.stopAllAudio(); await new Promise(resolve => setTimeout(resolve, 500));
         
         // Wait a moment to ensure all audio is stopped
         await new Promise(resolve => setTimeout(resolve, 300));
@@ -218,11 +218,11 @@ class BlindVisionApp {
             window.audioContext.close();
         }
         
-        this.isPlaying = false;
+        this.isPlaying = false; console.log("Audio state: isPlaying = false");
         console.log('All audio sources stopped');
     }
 
-    async speakWithElevenLabs(text) {
+    async speakWithElevenLabs(text) { if (this.isPlaying) { console.log("Already playing, skipping ElevenLabs speech"); return; }
         console.log('ElevenLabs speech function called');
         
         // Don't start if already playing
@@ -232,7 +232,7 @@ class BlindVisionApp {
         }
         
         // Stop any existing audio before starting
-        this.stopAllAudio();
+        this.stopAllAudio(); await new Promise(resolve => setTimeout(resolve, 500));
         
         try {
             const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${this.elevenLabsVoiceId}`, {
@@ -264,7 +264,7 @@ class BlindVisionApp {
             
             // Set as current audio
             this.currentAudio = audio;
-            this.isPlaying = true;
+            this.isPlaying = true; console.log("Audio state: isPlaying = true");
             
             audio.onloadstart = () => {
                 console.log('ElevenLabs audio loading started');
@@ -280,14 +280,14 @@ class BlindVisionApp {
             
             audio.onended = () => {
                 console.log('ElevenLabs audio finished');
-                this.isPlaying = false;
+                this.isPlaying = false; console.log("Audio state: isPlaying = false");
                 this.currentAudio = null;
                 URL.revokeObjectURL(audioUrl);
             };
             
             audio.onerror = (error) => {
                 console.error('ElevenLabs audio error:', error);
-                this.isPlaying = false;
+                this.isPlaying = false; console.log("Audio state: isPlaying = false");
                 this.currentAudio = null;
                 throw new Error('Audio playback failed');
             };
@@ -297,7 +297,7 @@ class BlindVisionApp {
             
         } catch (error) {
             console.error('ElevenLabs speech error:', error);
-            this.isPlaying = false;
+            this.isPlaying = false; console.log("Audio state: isPlaying = false");
             this.currentAudio = null;
             throw error;
         }
