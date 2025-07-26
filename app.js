@@ -97,8 +97,6 @@ class BlindVisionApp {
         
         console.log("Voice recognition initialized");
     }
-    }
-
     bindEvents() {
         // Events are handled in initializeElements
     }
