@@ -15,10 +15,10 @@ class BlindVisionApp {
         this.isPlaying = false;
         
         // API Keys - Load from environment variables or localStorage
-        this.apiKey = process.env.OPENAI_API_KEY || localStorage.getItem('openaiKey') || 'your_openai_api_key_here';
+        this.apiKey = window.ENV?.OPENAI_API_KEY || localStorage.getItem('openaiKey') || 'your_openai_api_key_here';
         
         // ElevenLabs settings - Load from environment variables or localStorage
-        this.elevenLabsKey = process.env.ELEVENLABS_API_KEY || localStorage.getItem('elevenLabsKey') || 'your_elevenlabs_api_key_here';
+        this.elevenLabsKey = window.ENV?.ELEVENLABS_API_KEY || localStorage.getItem('elevenLabsKey') || 'your_elevenlabs_api_key_here';
         this.elevenLabsVoiceId = '21m00Tcm4TlvDq8ikWAM';
         
         // Enable ElevenLabs for natural voice synthesis
