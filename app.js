@@ -285,12 +285,12 @@ class BlindVisionApp {
         console.log('All audio sources stopped');
     }
 
-    async speakWithElevenLabs(text) { if (this.isPlaying) { console.log("Already playing, skipping ElevenLabs speech"); return; }
+    async speakWithElevenLabs(text) { 
         console.log('ElevenLabs speech function called');
         
         // Don't start if already playing
         if (this.isPlaying || this.isSpeaking) {
-            console.log('Already playing, skipping ElevenLabs speech');
+            // Removed redundant check
             return;
         }
         
