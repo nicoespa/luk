@@ -1,27 +1,16 @@
-// Environment variables loader
+// Environment variables loader for Vercel
 window.ENV = {};
 
-// Load environment variables from .env file
-async function loadEnv() {
+// Load environment variables from Vercel
+function loadEnv() {
     try {
-        const response = await fetch('/.env');
-        if (response.ok) {
-            const envText = await response.text();
-            const lines = envText.split('\n');
-            
-            lines.forEach(line => {
-                const [key, value] = line.split('=');
-                if (key && value) {
-                    window.ENV[key.trim()] = value.trim();
-                }
-            });
-            
-            console.log('Environment variables loaded:', window.ENV);
-        }
+        // Vercel environment variables are available at build time
+        // They will be injected by Vercel automatically
+        console.log('Environment variables will be loaded by Vercel');
     } catch (error) {
-        console.log('Could not load .env file, using defaults');
+        console.log('Using fallback environment variables');
     }
 }
 
 // Load environment variables when page loads
-loadEnv(); 
+loadEnv();
