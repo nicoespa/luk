@@ -207,7 +207,7 @@ class BlindVisionApp {
 
     autoStart() {
         console.log('Auto-starting app for blind users...');
-        // this.speak("BlindVision Assistant starting. Please allow camera permissions."); // Removed startup message
+        this.speak("BlindVision Assistant starting. Testing audio."); // Test audio
         this.startCamera();
     }
 
