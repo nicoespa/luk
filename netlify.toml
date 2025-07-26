@@ -1,0 +1,8 @@
+[build]
+  publish = "web"
+  command = "echo 'Web app ready for deployment'"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
