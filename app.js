@@ -505,7 +505,7 @@ Describe in English with clear, direct language suitable for someone who cannot 
         
         this.liveMode = true;
         console.log('Live mode started');
-        this.speak('Live mode started. I will describe your surroundings continuously.');
+        // this.speak("Live mode started. I will describe your surroundings continuously."); // Removed live mode start message
         
         // Analyze every 2 seconds
         this.liveInterval = setInterval(() => {
@@ -518,7 +518,7 @@ Describe in English with clear, direct language suitable for someone who cannot 
         
         this.liveMode = false;
         console.log('Live mode stopped');
-        this.speak('Live mode stopped.');
+        // this.speak("Live mode stopped."); // Removed live mode stop message
         
         if (this.liveInterval) {
             clearInterval(this.liveInterval);
