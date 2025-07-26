@@ -24,6 +24,15 @@ class BlindVisionApp {
         // Enable ElevenLabs for natural voice synthesis
         this.useElevenLabs = true;
         
+        // Voice recognition for user commands
+        this.recognition = null;
+        this.isListening = false;
+        this.voiceCommandMode = false;
+        
+        // Double tap detection for voice commands
+        this.lastTapTime = 0;
+        this.tapCount = 0;
+        
         this.initializeElements();
         this.bindEvents();
         this.autoStart();
@@ -41,7 +50,49 @@ class BlindVisionApp {
         // Keyboard shortcuts for accessibility
         document.addEventListener('keydown', this.handleKeyPress.bind(this));
         
-        console.log('Elements initialized');
+        console.log("Elements initialized");
+    }
+    
+    initializeVoiceRecognition() {
+        if (!("webkitSpeechRecognition" in window)         console.log('Elements initialized');        console.log('Elements initialized'); !("SpeechRecognition" in window)) {
+            console.log("Speech recognition not supported");
+            return;
+        }
+        
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.recognition = new SpeechRecognition();
+        
+        this.recognition.continuous = false;
+        this.recognition.interimResults = false;
+        this.recognition.lang = "es-ES"; // Spanish for better recognition
+        
+        this.recognition.onstart = () => {
+            console.log("Voice recognition started");
+            this.isListening = true;
+        };
+        
+        this.recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript.toLowerCase();
+            console.log("Voice command:", transcript);
+            this.handleVoiceCommand(transcript);
+        };
+        
+        this.recognition.onerror = (event) => {
+            console.error("Voice recognition error:", event.error);
+            this.isListening = false;
+        };
+        
+        this.recognition.onend = () => {
+            console.log("Voice recognition ended");
+            this.isListening = false;
+            // Restart listening after a short delay
+            if (this.voiceCommandMode) {
+                setTimeout(() => this.startListening(), 1000);
+            }
+        };
+        
+        console.log("Voice recognition initialized");
+    }
     }
 
     bindEvents() {
