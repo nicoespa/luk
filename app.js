@@ -213,11 +213,14 @@ class BlindVisionApp {
     async speak(text) {
         console.log('Speak function called with text:', text.substring(0, 50) + '...');
         
-        // Don't start new speech if already playing
-        if (this.isPlaying) {
-            console.log('Already playing audio, skipping new speech');
+        // Strict audio management - only one voice at a time
+        if (this.isPlaying || this.isSpeaking) {
+            console.log("Audio already playing, skipping new speech");
             return;
         }
+        
+        // Set speaking flag immediately
+        this.isSpeaking = true;
         
         // Stop any ongoing audio before starting new speech
         this.stopAllAudio(); await new Promise(resolve => setTimeout(resolve, 500));
@@ -279,7 +282,7 @@ class BlindVisionApp {
         console.log('ElevenLabs speech function called');
         
         // Don't start if already playing
-        if (this.isPlaying) {
+        if (this.isPlaying || this.isSpeaking) {
             console.log('Already playing, skipping ElevenLabs speech');
             return;
         }
