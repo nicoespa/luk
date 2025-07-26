@@ -529,5 +529,5 @@ Describe in English with clear, direct language suitable for someone who cannot 
 
 // Initialize app when page loads
 document.addEventListener('DOMContentLoaded', () => {
-    new BlindVisionApp();
+    window.initializeApp = () => new BlindVisionApp();
 }); 
