@@ -211,7 +211,7 @@ class BlindVisionApp {
 
     autoStart() {
         console.log('Auto-starting app for blind users...');
-        this.speak("BlindVision Assistant starting. Testing audio."); // Test audio
+        this.speak("Audio test. Can you hear me?"); // Simple audio test
         this.startCamera();
     }
 
