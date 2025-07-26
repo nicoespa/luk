@@ -58,7 +58,7 @@ class BlindVisionApp {
     }
     
     initializeVoiceRecognition() {
-        if (!("webkitSpeechRecognition" in window)         console.log('Elements initialized');        console.log('Elements initialized'); !("SpeechRecognition" in window)) {
+        if (!("webkitSpeechRecognition" in window) && !("SpeechRecognition" in window)) {
             console.log("Speech recognition not supported");
             return;
         }
