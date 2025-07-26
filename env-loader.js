@@ -1,14 +1,18 @@
 // Environment variables loader for Vercel
 window.ENV = {};
 
-// Load environment variables from Vercel
-function loadEnv() {
+// Load environment variables from Vercel API
+async function loadEnv() {
     try {
-        // Vercel environment variables are available at build time
-        // They will be injected by Vercel automatically
-        console.log('Environment variables will be loaded by Vercel');
+        const response = await fetch('/api/env');
+        if (response.ok) {
+            window.ENV = await response.json();
+            console.log('Environment variables loaded from Vercel:', window.ENV);
+        } else {
+            console.log('Could not load environment variables from Vercel');
+        }
     } catch (error) {
-        console.log('Using fallback environment variables');
+        console.log('Error loading environment variables:', error);
     }
 }
 
