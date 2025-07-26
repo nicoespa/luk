@@ -11,6 +11,10 @@ class BlindVisionApp {
         this.isSpeaking = false;
         this.isAnalyzing = false;
         
+        // Voice command properties
+        this.voiceCommandMode = false;
+        this.isListening = false;
+        
         // Audio management
         this.currentAudio = null;
         this.isPlaying = false; console.log("Audio state: isPlaying = false");
